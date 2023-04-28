@@ -1,0 +1,18 @@
+1. To download files from a remote ubuntu server
+
+ex -> scp -r root@185.196.100.87:/root/checkifyouremailhacked-backend .
+ 
+    1. scp to download files
+    2. -r options
+    3. user@ip_address:/user/files or folder 
+    4. if files need to be downloaded the mention only the file name and if folder need to be downloaded then mention the folder name ended with .(ex - checkyouremailhacked-backend .)
+    5. then give the server password
+
+2. To upload files from a local server to a remote ubuntu server 
+
+ex_1 -> scp requirements.txt root@185.196.100.87:/root/checkifyour emailhacked-backend/requirements.txt
+ex_2 -> scp-r validator/ root@185.196.100.87:/root/checkifyouremailhacked-backend/validator
+    1. scp to upload files or folders
+    2. mention the file name(ex_1) or folder name(ex_2) 
+    3. user@ip_address:/user/files or folder 
+    4. then give the server password
