@@ -11,8 +11,7 @@ ex -> scp -r root@185.196.100.87:/root/checkifyouremailhacked-backend .
 2. To upload files from a local server to a remote ubuntu server 
 
 ex_1 -> scp requirements.txt root@185.196.100.87:/root/checkifyour emailhacked-backend/requirements.txt
-ex_2 -> scp-r validator/ root@185.196.100.87:/root/checkifyouremailhacked-backend/validator
-    1. scp to upload files or folders
-    2. mention the file name(ex_1) or folder name(ex_2) 
+    1. scp to upload files
+    2. mention the file name(ex_1)
     3. user@ip_address:/user/files or folder 
     4. then give the server password
