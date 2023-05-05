@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta Access-Control-Allow-Origin="*" />
+	<title>Cloud</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css' %}">
+
+	<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery-ui.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/ajax.js' %}"></script>
+
+	<script type="text/javascript">
+
+		var univ={
+			search_anim_toggle:false,
+			theme_anim_toggle:false,
+			theme_toggle:false,
+			xhr:null
+		};
+	</script>
+</head>
+<body class="theme_change">
+	<header>
+		<div class="sub_head_cont theme_change_cont">
+			<div class="slide_toggle">
+				<div class="line"></div>
+				<div class="circle"></div>
+			</div>
+			<span class="theme_change">Light or Dark Theme</span>
+		</div>
+		<div class="sub_head_cont search_form_cont">
+			<form method="GET" enctype="text/html" action="#">
+				<label for="searchtext"></label>
+				<input type="email" name="searchtext" id="searchtext" placeholder="What are you looking for?" required class="theme_change" required>
+				<button type="submit" ><img src="{% static 'image\search_black_icon.png' %}" alt="search icon" class="but_search_icon theme_change"></button>
+			</form>
+		</div>
+	</header>
+	<section>
+		<div class="search_result_cont">
+			<div class="sub_result_cont breach_found">
+				<div class="sub_breach breach_head">
+					<h2>Oh no &ndash; pwned!</h2>
+					<p>Pwned on <span id="breach_count">35</span> breached sites and found
+						<span id="pastes_count">16</span> pastes</p>
+				</div>
+				<div class="sub_breach breach_desc_cont">
+					<!-- <div>
+						<div>
+							<img src="#">
+						</div>
+						<div>
+							<h4>Website Name</h4>
+							<h5>Breach Date</h5>
+							<p>Description</p>
+							<p>Breach Class</p>
+						</div>
+					</div> -->
+				</div>
+				<div class="sub_breach breach_pastes_cont">
+					<div>
+						<h2>Pastes you were found in</h2>
+						<table>
+							<thead>
+								<th>Paste Title</th>
+								<th>Date</th>
+								<th>Emails</th>
+							</thead>
+							<tbody class="pastes_rows">
+								<!-- <tr>
+									<td>title</td>
+									<td>12/11/19</td>
+									<td>1234567</td>
+								</tr> -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="sub_result_cont breach_not_found">
+				<div>
+					<h2>Good news &ndash; no pwnage found!</h2>
+					<p>No breached data record available for this account at this tim. Please check back after a few weeks</p>
+					<p>No breached accounts and no pastes</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="loader">
+		<img src="{% static 'image/loader.gif' %}">
+	</div>
+	<script type="text/javascript" src="{% static 'js/ajax.js' %}"></script>
+	<script type="text/javascript">
+
+		$(function(){
+
+			$('.loader').hide();
+
+			$('form').on("submit",function(e){
+				e.preventDefault();
+
+				$('.loader').show();
+
+				$("header").animate({"height":"10em"},1000);
+				$(".search_result_cont").removeClass("search_result_cont_show");
+
+				var emailSearch=$('#searchtext').val().trim();
+				console.log(emailSearch);
+				//AJAX request to given API
+				//Old API
+				//requestAjax({url:'http://ec2-54-188-242-233.us-west-2.compute.amazonaws.com:8000/validate/'+emailSearch+'/'});
+				//Updated API
+				//requestAjax({url:'http://185.196.100.87:8000/validate/'+emailSearch+'/'});
+				requestAjax({url:'http://127.0.0.1:8000/validate/'+emailSearch+'/'});
+
+				return false;
+
+			});
+
+			$('.slide_toggle').on("click",function(){
+				//console.log("clicked");
+
+				if(!univ.theme_toggle){
+					$(".but_search_icon").attr({"src":"image\\search_white_icon.png"});
+					univ.theme_toggle=true;
+				}
+				else{
+					$(".but_search_icon").attr({"src":"image\\search_black_icon.png"});
+					univ.theme_toggle=false;
+				}
+
+				$('.theme_change').toggleClass("dark_theme")
+
+				if(!univ.theme_anim_toggle){
+					$(".circle").animate({"left":"60%"},100,"linear",function(){
+						univ.theme_anim_toggle=true;
+					});
+				}
+				else{
+					$(".circle").animate({"left":"0%"},100,"linear",function(){
+						univ.theme_anim_toggle=false;
+					});
+				}
+			});
+		});
+	</script>
+</body>
+</html>

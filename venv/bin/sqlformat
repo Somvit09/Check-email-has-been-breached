@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/media/sam/Extra things/Internships/is_email_hacked-master/venv/bin/python3" "$0" "$@"
-' '''
+#!/media/sam/cc84b507-63e3-4f3a-9e63-b3e2bc20d43a/Internships/is_email_hacked-master/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

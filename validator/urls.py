@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import check_if_email_hacked
+from . import views
 
 urlpatterns = [
-    path('<str:email>/', check_if_email_hacked),
+    path('<str:email>/', views.check_if_email_hacked, name='check_if_email_hacked'),
+    path('', views.home, name='home'),
 ]
