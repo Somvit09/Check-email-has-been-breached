@@ -20,38 +20,38 @@ var requestAjax=function(options){
 		}
 		else{
 			try{
-                console.log(data)
-				data = JSON.parse(data);
 
-				if(data.Breaches.length>0){
+				data = JSON.parse(JSON.stringify(data));
+                console.log(data.length)
+				if(data.length>0){
 					$("header").animate({"height":"10em"},1000,function(){
 					//$(".search_result_cont").toggleClass("search_result_cont_show");
 
 						$('.breach_found').css({'visibility':'visible'});
 						$('.breach_not_found').css({'visibility':'collapse'});
 
-						$('#breach_count').text(data.Breaches.length);
+						$('#breach_count').text(data.length);
 
 						$('.breach_desc_cont>div').detach();
 
-						for(var i in data.Breaches){
+						for(var i in data){
 							var logo=$('<img/>',{
-								'src':data.Breaches[i].LogoPath
+								'src':i.LogoPath
 							});
 
 							var name=$('<h4></h4>',{
-								'text':data.Breaches[i].Name
+								'text':i.Name
 							});
 
-							var bdate=$('<h4></h4>',{
-								'text':'Breached On '+data.Breaches[i].BreachDate
+							var bdate=$('<h5></h5>',{
+								'text':'Breached On '+i.BreachDate
 							});
 
 							var desc=$('<p></p>');
-							desc.html(data.Breaches[i].Description);
+							desc.html(i.Description);
 
 							var compromised=$('<p></p>',{
-								'html':'<span style="font-weight:bold">Compromised Data:</span> '+data.Breaches[i].DataClasses
+								'html':'<span style="font-weight:bold">Compromised Data:</span> '+i.DataClasses
 							});
 
 							var logo_cont=$('<div></div>');

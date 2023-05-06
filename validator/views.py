@@ -57,8 +57,6 @@ def check_if_email_hacked(request, email):
     elif response.status_code == 200:
         kickoff_database_tasks(email, response)
         data = response.json()[0]
-        for key, values in data.items():
-            print(key)
         return JsonResponse(response.json(), safe=False)
     else:
         return JsonResponse({
