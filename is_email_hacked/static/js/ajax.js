@@ -10,10 +10,8 @@ var requestAjax=function(options){
 
 	$.extend(object,options);
 	univ.xhr=$.ajax(object).done(function(data){
-		console.log(object);
 
 		$('.loader').hide();
-
 		if(data==null){
 			console.log("No data found!!!");
 			alert("No data found!!!");
@@ -22,7 +20,6 @@ var requestAjax=function(options){
 			try{
 
 				data = JSON.parse(JSON.stringify(data));
-                console.log(data.length)
 				if(data.length>0){
 					$("header").animate({"height":"10em"},1000,function(){
 					//$(".search_result_cont").toggleClass("search_result_cont_show");
@@ -106,7 +103,7 @@ var requestAjax=function(options){
 						}
 					});
 				}
-				else{
+				else if (data.data === "No Pawn Found"){
 					$('.breach_found').css({'visibility':'collapse'});
 					$('.breach_not_found').css({'visibility':'visible'});
 				}
@@ -123,7 +120,6 @@ var requestAjax=function(options){
 			$('.breach_not_found').css({'visibility':'visible'});
 		}
 		else{
-			console.log(jqXHR);
 	  		alert(jqXHR.statusText);
 		}
 	});;

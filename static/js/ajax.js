@@ -10,10 +10,8 @@ var requestAjax=function(options){
 
 	$.extend(object,options);
 	univ.xhr=$.ajax(object).done(function(data){
-		console.log(object);
 
 		$('.loader').hide();
-
 		if(data==null){
 			console.log("No data found!!!");
 			alert("No data found!!!");
@@ -22,7 +20,6 @@ var requestAjax=function(options){
 			try{
 
 				data = JSON.parse(JSON.stringify(data));
-                console.log(data.length)
 				if(data.length>0){
 					$("header").animate({"height":"10em"},1000,function(){
 					//$(".search_result_cont").toggleClass("search_result_cont_show");
@@ -34,24 +31,24 @@ var requestAjax=function(options){
 
 						$('.breach_desc_cont>div').detach();
 
-						for(var i in data){
+						for(var i=0; i<data.length; i++){
 							var logo=$('<img/>',{
-								'src':i.LogoPath
+								'src':data[i].LogoPath
 							});
 
 							var name=$('<h4></h4>',{
-								'text':i.Name
+								'text':data[i].Name
 							});
 
 							var bdate=$('<h5></h5>',{
-								'text':'Breached On '+i.BreachDate
+								'text':'Breached On '+data[i].BreachDate
 							});
 
 							var desc=$('<p></p>');
-							desc.html(i.Description);
+							desc.html(data[i].Description);
 
 							var compromised=$('<p></p>',{
-								'html':'<span style="font-weight:bold">Compromised Data:</span> '+i.DataClasses
+								'html':'<span style="font-weight:bold">Compromised Data:</span> '+data[i].DataClasses
 							});
 
 							var logo_cont=$('<div></div>');
@@ -106,7 +103,7 @@ var requestAjax=function(options){
 						}
 					});
 				}
-				else{
+				else if (data.data === "No Pawn Found"){
 					$('.breach_found').css({'visibility':'collapse'});
 					$('.breach_not_found').css({'visibility':'visible'});
 				}
@@ -123,7 +120,6 @@ var requestAjax=function(options){
 			$('.breach_not_found').css({'visibility':'visible'});
 		}
 		else{
-			console.log(jqXHR);
 	  		alert(jqXHR.statusText);
 		}
 	});;

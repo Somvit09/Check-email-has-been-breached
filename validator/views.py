@@ -50,13 +50,9 @@ def check_if_email_hacked(request, email):
     """
     response = get_response(email)
     if response.status_code == 404:
-        return JsonResponse({
-            'status': 'safe',
-            'breaches': 0
-        }, status=404)
+        return JsonResponse({"data": "No Pawn Found"}, safe=False)
     elif response.status_code == 200:
         kickoff_database_tasks(email, response)
-        data = response.json()[0]
         return JsonResponse(response.json(), safe=False)
     else:
         return JsonResponse({

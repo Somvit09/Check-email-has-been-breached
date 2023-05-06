@@ -10,6 +10,7 @@
       <change beforePath="$PROJECT_DIR$/is_email_hacked/static/js/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/is_email_hacked/static/js/ajax.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/ajax.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validator/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/validator/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
