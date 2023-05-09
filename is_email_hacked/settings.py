@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'is_email_hacked.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "db.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "mndb/db.sqlite3"),
     }
 }
 
