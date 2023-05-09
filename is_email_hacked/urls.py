@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from validator import urls as validator_urls
+from validator import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('validate/', include(validator_urls)),
+    path('', views.home, name='home'),
 ]
